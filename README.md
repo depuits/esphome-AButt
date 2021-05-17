@@ -1,7 +1,18 @@
 # Esphome AButt custom component
 
+Custom component for [esphome](https://esphome.io/) which aims to have a simplified multiclick button component in place of the [binary sensor on multiclick](https://esphome.io/components/binary_sensor/index.html?highlight=binar#binary-sensor-on-multi-click). 
 
-## Example
+## Instalation
+
+Clone this repository into custom_components in a folder where the device config.yaml is stored.
+
+    git clone https://github.com/depuits/esphome-AButt.git AButt
+
+## Usage
+
+Button presses are registered as a value change with. The value reporterd is the number of time the butten was clicked in sequence. So a single press will report 1, double click will report 2, tripple click 3 and so on to the maximum defined clicks. When the button is pressed and hold the sensor will report -1 and 0 when it's released again.
+
+### Example
 
 ```
 sensor:
@@ -31,4 +42,15 @@ sensor:
 
 ```
 
-## Options
+### Options
+
+| Option     | Description                                                                                 | Required | Default value |
+|------------|---------------------------------------------------------------------------------------------|----------|---------------|
+| pin        | Pin conected to the button                                                                  | x        |               |
+| inverted   | Invert to logic level                                                                       |          | false         |
+| isDigital  | Set to false when using an analog input                                                     |          | true          |
+| debounce   | Amount of ms before a press is registered                                                   |          | 50            |
+| clickDelay | Ms before a click is registered as a new sequense                                           |          | 500           |
+| holdDelay  | Time before a click is registered as hold                                                   |          | 700           |
+| maxClicks  | Maximum number of clicks in a sequence (after this amount a new sequence is always started) |          | 5             |
+
