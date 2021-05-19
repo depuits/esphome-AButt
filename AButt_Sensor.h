@@ -17,7 +17,7 @@ public:
     void setup() override;
     void loop() override;
     void dump_config() override;
-    float get_setup_priority() const override { return esphome::setup_priority::DATA; }
+    float get_setup_priority() const override { return esphome::setup_priority::HARDWARE; }
 
     INODE_SET_METHOD(int, pin, 0);
     INODE_SET_METHOD(bool, inverted, false);

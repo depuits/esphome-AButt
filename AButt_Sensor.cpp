@@ -40,10 +40,13 @@ void AButtSensor::setup() {
 
 void AButtSensor::loop() {
 	button->update();
+	//ESP_LOGD(TAG, "pressed: %d", button->isPressed());
 }
 
 void AButtSensor::dump_config() {
-    ESP_LOGCONFIG(TAG, "AButt sensor");
+	ESP_LOGCONFIG(TAG, "AButt sensor");
+
+	LOG_SENSOR("", "AButt", this);
 
 	ESP_LOGD(TAG, "Pin: %i", pin_);
 	ESP_LOGD(TAG, "Inverted: %d", inverted_);

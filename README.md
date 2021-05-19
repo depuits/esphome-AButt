@@ -1,6 +1,6 @@
 # Esphome AButt custom component
 
-Custom component for [esphome](https://esphome.io/) which aims to have a simplified multiclick button component in place of the [binary sensor on multiclick](https://esphome.io/components/binary_sensor/index.html?highlight=binar#binary-sensor-on-multi-click). 
+Custom component for [esphome](https://esphome.io/) which aims to have a simplified multiclick button component in place of the [binary sensor on multiclick](https://esphome.io/components/binary_sensor/index.html?highlight=binar#binary-sensor-on-multi-click). This implementation uses the [AButt library](https://github.com/depuits/AButt).
 
 ## Instalation
 
@@ -54,3 +54,5 @@ sensor:
 | holdDelay  | Time before a click is registered as hold                                                   |          | 700           |
 | maxClicks  | Maximum number of clicks in a sequence (after this amount a new sequence is always started) |          | 5             |
 
+
+## Example of same behavior with binary_sensor
