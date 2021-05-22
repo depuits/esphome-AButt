@@ -14,7 +14,7 @@ Button presses are registered as a value change with. The value reporterd is the
 
 ### Example
 
-```
+``` YAML
 sensor:
   - platform: AButt
     name: "Button"
@@ -56,3 +56,32 @@ sensor:
 
 
 ## Example of same behavior with binary_sensor
+
+``` YAML
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      inverted: True
+    name: "Button"
+    on_multi_click:
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at least 0.2s
+      then:
+        - logger.log: "Double Clicked"
+        - light.toggle: ceiling
+    - timing:
+        - ON for 1s to 2s
+        - OFF for at least 0.5s
+      then:
+        - logger.log: "Single Long Clicked"
+    - timing:
+        - ON for at most 1s
+        - OFF for at least 0.5s
+      then:
+        - logger.log: "Single Short Clicked"
+        - light.toggle: wall
+```
