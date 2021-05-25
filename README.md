@@ -2,12 +2,6 @@
 
 Custom component for [esphome](https://esphome.io/) which aims to have a simplified multiclick button component in place of the [binary sensor on multiclick](https://esphome.io/components/binary_sensor/index.html?highlight=binar#binary-sensor-on-multi-click). This implementation uses the [AButt library](https://github.com/depuits/AButt).
 
-## Instalation
-
-Clone this repository into custom_components in a folder where the device config.yaml is stored.
-
-    git clone https://github.com/depuits/esphome-AButt.git AButt
-
 ## Usage
 
 Button presses are registered as a value change with. The value reporterd is the number of time the butten was clicked in sequence. So a single press will report 1, double click will report 2, tripple click 3 and so on to the maximum defined clicks. When the button is pressed and hold the sensor will report -1 and 0 when it's released again.
@@ -15,6 +9,9 @@ Button presses are registered as a value change with. The value reporterd is the
 ### Example
 
 ``` YAML
+external_components:
+  source: github://depuits/esphome-AButt
+
 sensor:
   - platform: AButt
     name: "Button"
