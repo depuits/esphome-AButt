@@ -9,6 +9,7 @@ static const char *TAG = "aButt_sensor.AButtSensor";
 
 void clicked(AButt* sender, unsigned short clicks) {
 	reinterpret_cast<AButtSensor*>(sender->getData())->publish_state(clicks);
+	reinterpret_cast<AButtSensor*>(sender->getData())->publish_state(0); //send 0 to reset click count
 }
 
 void holdStart(AButt* sender) {
