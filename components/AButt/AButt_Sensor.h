@@ -30,6 +30,10 @@ public:
     
 protected:
 	AButt* button;
+
+  unsigned long 
+    resetStateDelay = 500, 
+    timerStart = 0;
 };
 
 } //namespace empty_sensor

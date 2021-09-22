@@ -9,7 +9,6 @@ static const char *TAG = "aButt_sensor.AButtSensor";
 
 void clicked(AButt* sender, unsigned short clicks) {
 	reinterpret_cast<AButtSensor*>(sender->getData())->publish_state(clicks);
-	reinterpret_cast<AButtSensor*>(sender->getData())->publish_state(0); //send 0 to reset click count
 }
 
 void holdStart(AButt* sender) {
@@ -41,7 +40,21 @@ void AButtSensor::setup() {
 
 void AButtSensor::loop() {
 	button->update();
-	//ESP_LOGD(TAG, "pressed: %d", button->isPressed());
+
+	// click state reset to 0 to make sure that same state events are picked up
+	// and make the history graph pretier
+	float state = get_raw_state();
+	if (state > 0) {
+		unsigned long time = millis();
+		if (timerStart == 0) {
+			timerStart = time;
+		}
+
+		if (time - timerStart > resetStateDelay) {
+			publish_state(0); //send 0 to reset click count
+			timerStart = 0;
+		}
+	}
 }
 
 void AButtSensor::dump_config() {
