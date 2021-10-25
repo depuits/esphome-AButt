@@ -8,8 +8,6 @@ static const char *TAG = "aButt_sensor.AButtSensor";
 
 void AButtSensor::setup() {
     pin_->setup();
-
-	ESP_LOGD(TAG, "Setup completed");
 }
 
 void AButtSensor::loop() {	
@@ -76,15 +74,14 @@ void AButtSensor::loop() {
 }
 
 void AButtSensor::dump_config() {
-	ESP_LOGCONFIG(TAG, "AButt sensor");
 
 	LOG_SENSOR("", "AButt", this);
 
   	LOG_PIN("  Pin: ", pin_);
-	ESP_LOGCONFIG(TAG, "Debounce: %i", debounce_);
-	ESP_LOGCONFIG(TAG, "ClickDelay: %i", clickDelay_);
-	ESP_LOGCONFIG(TAG, "HoldDelay: %i", holdDelay_);
-	ESP_LOGCONFIG(TAG, "MaxClicks: %i", maxClicks_);
+	ESP_LOGCONFIG(TAG, "  Debounce: %i", debounce_);
+	ESP_LOGCONFIG(TAG, "  ClickDelay: %i", clickDelay_);
+	ESP_LOGCONFIG(TAG, "  HoldDelay: %i", holdDelay_);
+	ESP_LOGCONFIG(TAG, "  MaxClicks: %i", maxClicks_);
 }
 
 void AButtSensor::finishClick() {
