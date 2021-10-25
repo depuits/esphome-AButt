@@ -18,6 +18,7 @@ sensor:
     pin:
       number: GPIO0
       inverted: True
+      mode: INPUT_PULLUP
     debounce: 50
     on_value:
       then:

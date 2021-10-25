@@ -2,14 +2,13 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.cpp_helpers import gpio_pin_expression
 from esphome.components import sensor
-from esphome.const import CONF_ID, ICON_EMPTY
+from esphome.const import CONF_ID, CONF_PIN, ICON_EMPTY
 from esphome import pins
 
 aButt_sensor_ns = cg.esphome_ns.namespace('aButt_sensor')
 
 AButtSensor = aButt_sensor_ns.class_('AButtSensor', cg.Component)
 
-CONF_PIN = 'pin'
 CONF_DEBOUNCE = 'debounce'
 
 CONF_CLICKDELAY = 'clickDelay'
@@ -18,7 +17,7 @@ CONF_MAXCLICKS = 'maxClicks'
 
 CONFIG_SCHEMA = sensor.sensor_schema('clicks', ICON_EMPTY, 0).extend({
     cv.GenerateID(): cv.declare_id(AButtSensor),
-    cv.Required(CONF_PIN): pins.gpio_output_pin_schema,
+    cv.Required(CONF_PIN): pins.gpio_input_pin_schema,
     cv.Optional(CONF_DEBOUNCE, default=50): cv.positive_int,
 
     cv.Optional(CONF_CLICKDELAY, default=500): cv.positive_not_null_int,
