@@ -27,17 +27,17 @@ public:
     
 protected:
   bool 
-    _isPressed, //is btn pressed. This INCLUDES the debounce compensation.
-   _isHeld,     //is the btn beeing hold?
-   _wasPressed, //was btn pressed. This INCLUDES the debounce compensation.
-   _lastState,  //state of button in previous update 
+    _isPressed = false, //is btn pressed. This INCLUDES the debounce compensation.
+   _isHeld = false,     //is the btn beeing hold?
+   _wasPressed = false, //was btn pressed. This INCLUDES the debounce compensation.
+   _lastState = false;  //state of button in previous update 
 
-  short clickCount; //counting the number of double clicks
+  short clickCount = 0; //counting the number of double clicks
 
   unsigned long 
-    _lastDebounceTime, //start last btn state change
-    _lastPressTime,    //start of the last btn press, including de-bounce
-    _lastClickTime,    //start of the last btn release, including de-bounce
+    _lastDebounceTime = 0, //start last btn state change
+    _lastPressTime = 0,    //start of the last btn press, including de-bounce
+    _lastClickTime = 0,    //start of the last btn release, including de-bounce
 
     resetStateDelay_ = 500, 
     timerStart_ = 0;
