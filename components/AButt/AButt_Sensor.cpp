@@ -64,27 +64,27 @@ void AButtSensor::loop() {
 	// and make the history graph pretier
 	float state = get_raw_state();
 	if (state > 0) {
-		if (timerStart == 0) {
-			timerStart = now;
+		if (timerStart_ == 0) {
+			timerStart_ = now;
 		}
 
-		if (now - timerStart > resetStateDelay) {
+		if (now - timerStart_ > resetStateDelay_) {
 			publish_state(0); //send 0 to reset click count
-			timerStart = 0;
+			timerStart_ = 0;
 		}
 	}
 }
 
 void AButtSensor::dump_config() {
-	ESP_LOGCONFIG(TAG, "AButt sensor");
+	LOG_CONFIG(TAG, "AButt sensor");
 
 	LOG_SENSOR("", "AButt", this);
 
   	LOG_PIN("  Pin: ", pin_);
-	ESP_LOGD(TAG, "Debounce: %i", debounce_);
-	ESP_LOGD(TAG, "ClickDelay: %i", clickDelay_);
-	ESP_LOGD(TAG, "HoldDelay: %i", holdDelay_);
-	ESP_LOGD(TAG, "MaxClicks: %i", maxClicks_);
+	LOG_CONFIG(TAG, "Debounce: %i", debounce_);
+	LOG_CONFIG(TAG, "ClickDelay: %i", clickDelay_);
+	LOG_CONFIG(TAG, "HoldDelay: %i", holdDelay_);
+	LOG_CONFIG(TAG, "MaxClicks: %i", maxClicks_);
 }
 
 void AButtSensor::finishClick() {
