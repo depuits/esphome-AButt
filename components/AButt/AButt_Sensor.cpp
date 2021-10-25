@@ -14,25 +14,27 @@ void AButtSensor::setup() {
 
 void AButtSensor::loop() {	
 	//Check the real button state
-	bool state = pin_->digital_read();
-	
+	bool pinState = pin_->digital_read();
+
+	unsigned long now = esphome::millis();
+
 	//Manage _isPressed var
-	if (state != _lastState) {
+	if (pinState != _lastState) {
 		// reset the debouncing timer
-		_lastDebounceTime = millis();
+		_lastDebounceTime = now;
 	}
 
-	if ((millis() - _lastDebounceTime) > _debounceDelay) {
+	if ((now - _lastDebounceTime) > debounce_) {
 		// whatever the reading is at, it's been there for longer than the debounce
 		// delay, so take it as the actual current state:
-		_isPressed = state;
+		_isPressed = pinState;
 	}
 
 	// do the callback and actual logics
 	if (_isPressed) {
 		if (!_wasPressed) {
-			_lastPressTime = millis();
-		} else if (!_isHeld && millis() - _lastPressTime >= holdDelay_) {
+			_lastPressTime = now;
+		} else if (!_isHeld && now - _lastPressTime >= holdDelay_) {
 			startHold();			
 		}
 	} else {
@@ -41,7 +43,7 @@ void AButtSensor::loop() {
 		} else if (_wasPressed) {
 			++clickCount;
 			//start was pressed timer
-			_lastClickTime = millis();
+			_lastClickTime = now;
 
 			if (clickCount >= maxClicks_) {
 				finishClick();
@@ -50,24 +52,23 @@ void AButtSensor::loop() {
 	}
 
 	//if not pressed and released again within the time send the callback and number of clicks
-	if (millis() - _lastClickTime >= clickDelay_) {
+	if (now - _lastClickTime >= clickDelay_) {
 		finishClick();
 	}
 
 	// remember last states
-	_lastState = state;
+	_lastState = pinState;
 	_wasPressed = _isPressed;
 
 	// click state reset to 0 to make sure that same state events are picked up
 	// and make the history graph pretier
 	float state = get_raw_state();
 	if (state > 0) {
-		unsigned long time = millis();
 		if (timerStart == 0) {
-			timerStart = time;
+			timerStart = now;
 		}
 
-		if (time - timerStart > resetStateDelay) {
+		if (now - timerStart > resetStateDelay) {
 			publish_state(0); //send 0 to reset click count
 			timerStart = 0;
 		}

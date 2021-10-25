@@ -3,6 +3,8 @@
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
 
+#define GPIOPIN_PTR GPIOPin*
+
 #define INODE_SET_METHOD(type, name, default) \
   type name##_{default}; \
   void set_##name(type name) { name##_ = name; }
@@ -17,7 +19,7 @@ public:
   void dump_config() override;
   float get_setup_priority() const override { return esphome::setup_priority::HARDWARE; }
 
-  INODE_SET_METHOD(GPIOPin*, pin, nullptr);
+  INODE_SET_METHOD(GPIOPIN_PTR, pin, nullptr);
   INODE_SET_METHOD(unsigned int, debounce, 50);
 
   INODE_SET_METHOD(unsigned int, clickDelay, 500); // time before a click is registered as a new sequense
