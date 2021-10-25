@@ -81,10 +81,10 @@ void AButtSensor::dump_config() {
 	LOG_SENSOR("", "AButt", this);
 
   	LOG_PIN("  Pin: ", pin_);
-	LOG_CONFIG(TAG, "Debounce: %i", debounce_);
-	LOG_CONFIG(TAG, "ClickDelay: %i", clickDelay_);
-	LOG_CONFIG(TAG, "HoldDelay: %i", holdDelay_);
-	LOG_CONFIG(TAG, "MaxClicks: %i", maxClicks_);
+	ESP_LOGCONFIG(TAG, "Debounce: %i", debounce_);
+	ESP_LOGCONFIG(TAG, "ClickDelay: %i", clickDelay_);
+	ESP_LOGCONFIG(TAG, "HoldDelay: %i", holdDelay_);
+	ESP_LOGCONFIG(TAG, "MaxClicks: %i", maxClicks_);
 }
 
 void AButtSensor::finishClick() {
