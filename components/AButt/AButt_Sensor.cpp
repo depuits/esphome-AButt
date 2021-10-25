@@ -9,7 +9,7 @@ static const char *TAG = "aButt_sensor.AButtSensor";
 void AButtSensor::setup() {
     pin_->setup();
 
-	ESP_LOGCONFIG(TAG, "Setup completed");
+	ESP_LOGD(TAG, "Setup completed");
 }
 
 void AButtSensor::loop() {	
@@ -76,7 +76,7 @@ void AButtSensor::loop() {
 }
 
 void AButtSensor::dump_config() {
-	LOG_CONFIG(TAG, "AButt sensor");
+	ESP_LOGCONFIG(TAG, "AButt sensor");
 
 	LOG_SENSOR("", "AButt", this);
 
