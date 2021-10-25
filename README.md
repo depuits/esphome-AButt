@@ -15,9 +15,9 @@ external_components:
 sensor:
   - platform: AButt
     name: "Button"
-    retain: False # don't retain mqtt messages
-    inverted: True
-    pin: 0
+    pin:
+      number: GPIO0
+      inverted: True
     debounce: 50
     on_value:
       then:
@@ -44,8 +44,6 @@ sensor:
 | Option     | Description                                                                                 | Required | Default value |
 |------------|---------------------------------------------------------------------------------------------|----------|---------------|
 | pin        | Pin conected to the button                                                                  | x        |               |
-| inverted   | Invert to logic level                                                                       |          | false         |
-| isDigital  | Set to false when using an analog input                                                     |          | true          |
 | debounce   | Amount of ms before a press is registered                                                   |          | 50            |
 | clickDelay | Ms before a click is registered as a new sequense                                           |          | 500           |
 | holdDelay  | Time before a click is registered as hold                                                   |          | 700           |
