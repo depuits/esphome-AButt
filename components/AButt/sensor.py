@@ -15,7 +15,7 @@ CONF_CLICKDELAY = 'clickDelay'
 CONF_HOLDDELAY = 'holdDelay'
 CONF_MAXCLICKS = 'maxClicks'
 
-CONFIG_SCHEMA = sensor.sensor_schema('clicks', ICON_EMPTY, 0).extend({
+CONFIG_SCHEMA = sensor.sensor_schema('clicks').extend({
     cv.GenerateID(): cv.declare_id(AButtSensor),
     cv.Required(CONF_PIN): pins.gpio_input_pin_schema,
     cv.Optional(CONF_DEBOUNCE, default=50): cv.positive_int,
