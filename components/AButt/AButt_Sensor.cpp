@@ -102,7 +102,7 @@ void AButtSensor::startHold() {
 }
 void AButtSensor::endHold() {
 	_isHeld = false;
-	publish_state(-1); //publish button is being released
+	publish_state(0); //publish button is being released
 }
 
 
